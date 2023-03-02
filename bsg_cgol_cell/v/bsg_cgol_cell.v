@@ -25,10 +25,10 @@ module bsg_cgol_cell (
     ,output logic data_o
   );
 
-	logic [7:0] data_n;
+	logic data_n;
 	logic[3:0] count;
 
-  bsg_popcount countOnes(data_i), .o(count));
+  bsg_popcount countOnes(.i(data_i), .o(count));
 	defparam countOnes.width_p = 8;
   
   always_comb begin
@@ -41,13 +41,14 @@ module bsg_cgol_cell (
 
 			else data_n = 1;
 
-
 		end
+
 	end
 
-	always_ff @(posedge clk) begin
+	always_ff @(posedge clk_i) begin
 		
 		data_o = (update_i) ? update_val_i : ((en_i) ? data_n : data_o);
+		//data_o = (update_i) ? update_val_i : ((count == 2) ? data_o : data_n);
 
 	end
 
