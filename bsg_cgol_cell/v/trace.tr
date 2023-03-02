@@ -7,25 +7,252 @@
 
 # EXAMPLES:
 # Update, value = 1
-0001__0_1_00000000
+#0001__0_1_00000000
 # Recv 1, live cell
-0010__000000000_1
+#0010__0_0_00000001
 # Enable, 8 neighbors = 8'b01000100
-0001__1_0_01000100
-# Recv 1, a live cell with two live neighbours lives on to the next generation.
-0010__000000000_1
+#0001__1_0_01000100
+# Recv 1, a live cell with two live neighbors lives on to the next generation.
+#0010__0_0_00000001
 
 
 # TODO: Add more testing traces here!!!
 # Please create at least 20 test cases:
 # Set the update value to 0, then set enbale to 1 and test with 0-8 live neighbors
-# Set the update value to 1, then set enbale to 1 and test with 0-8 live neighbors
+
+# Update, value = 0
+0001__0_0_00000000
+# Recv 0, live cell
+0010__000000000_0
+
+
+# //////////// CASE 1 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00000000
+0001__1_0_00000000
+# Recv 0, a dead cell with zero live neighbours remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 2 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00000001
+0001__1_0_00000001
+# Recv 0, a dead cell with one live neighbor remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 3 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00000011
+0001__1_0_00000011
+# Recv 0, a dead cell with two live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 4 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00001111
+0001__1_0_00001111
+# Recv 0, a dead cell with four live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 5 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00011111
+0001__1_0_00011111
+# Recv 0, a dead cell with five live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 6 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00111111
+0001__1_0_00111111
+# Recv 0, a dead cell with six live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 7 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b01111111
+0001__1_0_01111111
+# Recv 0, a dead cell with seven live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 8 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b11111111
+0001__1_0_11111111
+# Recv 0, a dead cell with eight live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 9 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00000111
+0001__1_0_00000111
+# Recv 1, a live cell with three live neighbors resurrects.
+0010__000000000_1
 
 
 
 
+
+
+# Set the update value to 1, then set enable to 1 and test with 0-8 live neighbors
+
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+
+# //////////// CASE 10 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00000011
+0001__1_0_00000011
+# Recv 1, a live cell with two live neighbors lives on to the next generation.
+0010__000000000_1
+
+
+# //////////// CASE 11 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00000111
+0001__1_0_00000111
+# Recv 1, a live cell with three live neighbors lives on to the next generation.
+0010__000000000_1
+
+
+# //////////// CASE 12 \\\\\\\\\\\\
+
+# Enable, 8 neighbors = 8'b00000000
+0001__1_0_00000000
+# Recv 0, a live cell with zero live neighbors dies.
+0010__000000000_0
+
+
+# //////////// CASE 13 \\\\\\\\\\\\
+
+# Reset cell to 1
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b00000001
+0001__1_0_00000001
+# Recv 0, a dead cell with one live neighbor remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 14 \\\\\\\\\\\\
+
+# Reset cell to 1
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b00001111
+0001__1_0_00001111
+# Recv 0, a dead cell with four live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 15 \\\\\\\\\\\\
+
+# Reset cell to 1
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b00011111
+0001__1_0_00011111
+# Recv 0, a dead cell with five live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 16 \\\\\\\\\\\\
+
+# Reset cell to 1
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b00111111
+0001__1_0_00111111
+# Recv 0, a dead cell with six live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 17 \\\\\\\\\\\\bsg_cgol_cell
+
+# Reset cell to 1
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b01111111
+0001__1_0_01111111
+# Recv 0, a dead cell with seven live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 18 \\\\\\\\\\\\
+
+# Reset cell to 1
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b11111111
+0001__1_0_11111111
+# Recv 0, a dead cell with eight live neighbors remains dead.
+0010__000000000_0
+
+
+# //////////// CASE 19 + 20 \\\\\\\\\\\\
+
+# Reset cell to 1
+# Update, value = 1
+0001__0_1_00000000
+# Recv 1, live cell
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b10101010 4
+0001__1_0_10101010
+# Recv 1, a live cell with three live neighbours lives on to the next generation.
+0010__000000000_0
+
+# Enable, 8 neighbors = 8'b11110111
+0001__1_0_11110111
+# Recv 1, a live cell with three live neighbours lives on to the next generation.
+0010__000000000_0
+
+# Enable, 8 neighbors = 8'b00000111
+0001__1_0_10100001
+# Recv 1, a live cell with three live neighbours lives on to the next generation.
+0010__000000000_1
+
+# Enable, 8 neighbors = 8'b00000111
+0001__1_0_10101011
+# Recv 1, a live cell with three live neighbours lives on to the next generation.
+0010__000000000_0
+
+# Enable, 8 neighbors = 8'b00000111
+0001__1_0_10101000
+# Recv 1, a live cell with three live neighbours lives on to the next generation.
+0010__000000000_1
 
 
 
 # Finish simulation
 0100__0_0_00000000
+

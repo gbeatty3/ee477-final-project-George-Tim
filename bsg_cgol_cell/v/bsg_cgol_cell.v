@@ -25,10 +25,31 @@ module bsg_cgol_cell (
     ,output logic data_o
   );
 
-  // TODO: Design your bsg_cgl_cell
-  // Hint: Find the module to count the number of neighbors from basejump
+	logic [7:0] data_n;
+	logic[3:0] count;
+
+  bsg_popcount countOnes(data_i), .o(count));
+	defparam countOnes.width_p = 8;
   
-  
+  always_comb begin
+		
+		if(en_i) begin
+			
+			if ( count < 2 || count > 3 ) data_n = 0;
+
+			else if ( count == 2 ) data_n = data_o;
+
+			else data_n = 1;
+
+
+		end
+	end
+
+	always_ff @(posedge clk) begin
+		
+		data_o = (update_i) ? update_val_i : ((en_i) ? data_n : data_o);
+
+	end
 
 
 
