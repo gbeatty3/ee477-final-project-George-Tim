@@ -112,6 +112,9 @@ synthesis.inputs.input_files: [
   "${bsg_root}/bsg_noc/bsg_mesh_router.v",
   "${bsg_root}/bsg_noc/bsg_mesh_router_buffered.v",
   "${bsg_root}/bsg_noc/bsg_mesh_stitch.v",
+  
+  # couner
+  "${bsg_root}/bsg_misc/bsg_counter_dynamic_limit_en.v",
 
   # bsg_guts and IO sources
   "../common/v/bsg_guts.v",

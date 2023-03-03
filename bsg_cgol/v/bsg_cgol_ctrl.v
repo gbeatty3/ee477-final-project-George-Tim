@@ -10,24 +10,102 @@ module bsg_cgol_ctrl #(
   // Input Data Channel
   ,input  [game_len_width_lp-1:0] frames_i
   ,input  v_i
-  ,output ready_o
+  ,output logic ready_o
 
   // Output Data Channel
   ,input yumi_i
-  ,output v_o
+  ,output logic v_o
 
   // Cell Array
-  ,output update_o
-  ,output en_o
+  ,output logic update_o
+  ,output logic en_o
 );
 
   wire unused = en_i; // for clock gating, unused
   
   // TODO: Design your control logic
 
-  
+	enum logic [1:0] {SETUP, START, BUSY, DONE} ps, ns;	
 
+	logic [game_len_width_lp : 0] count, frames_r; 
+	logic overflow;
 
+	bsg_counter_dynamic_limit_en counter (.clk_i, .reset_i(reset_i || v_o), .en_i(en_o), 
+																				.limit_i(frames_r + 2'b01), .counter_o(count),
+																				.overflowed_o(overflow));
+	defparam counter.width_p = (game_len_width_lp + 2'b01);
 
+	
+	always_comb begin
+		case (ps)
+	/*		
+			SETUP : ns <= START;
+ */
+			START : begin
+				if (ready_o && v_i) begin
+					ns <= BUSY; 
+					frames_r <= frames_i;
+				end
+
+				else ns <= START;
+
+			end
+
+			BUSY : begin
+				if (count == (frames_r - 1)) ns <= DONE;
+				else ns <= BUSY;
+
+			end
+
+			DONE : begin
+				if (yumi_i && v_o) ns <= START;
+				else ns <= DONE;
+			end
+
+		endcase
+	end
+
+	assign update_o = (ready_o & v_i);
+
+	always_ff @(posedge clk_i) begin
+	
+		if (reset_i) begin
+				ready_o <= 0;
+				v_o <= 0;
+			//	update_o <= 0;
+				en_o <= 0;
+		end
+/*
+		else if (ps == SETUP) begin
+			v_o <= 0;
+			//update_o <= 1;
+		end 
+*/
+		else if (ps == START) begin
+			v_o <= 0;
+			ready_o <= 1;
+		//	update_o <= 0;
+
+		end
+
+		else if (ps == BUSY) begin
+			en_o <= 1;
+			ready_o <= 0;
+
+		end
+
+		else if (ps == DONE) begin
+			en_o <= 0;
+			v_o <= 1;
+
+		end
+	end
+
+	always_ff @(posedge clk_i) begin
+		if (reset_i) ps <= START;
+
+		else ps <= ns;
+
+	end
 
 endmodule

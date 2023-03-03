@@ -42,13 +42,20 @@ module bsg_cgol_cell (
 			else data_n = 1;
 
 		end
+/*
+		else if (update_i) begin
+			data_n = update_val_i;
+		end
 
+		else data_n = data_o;
+*/
 	end
 
 	always_ff @(posedge clk_i) begin
 		
-		data_o = (update_i) ? update_val_i : ((en_i) ? data_n : data_o);
-		//data_o = (update_i) ? update_val_i : ((count == 2) ? data_o : data_n);
+		//data_o <= data_n;
+		data_o <= (update_i) ? update_val_i : ((en_i) ? data_n : data_o);
+		//data_o <= (update_i) ? update_val_i : ((count == 2) ? data_o : data_n);
 
 	end
 

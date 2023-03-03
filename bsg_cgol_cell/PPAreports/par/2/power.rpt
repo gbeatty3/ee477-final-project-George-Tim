@@ -1,0 +1,100 @@
+*----------------------------------------------------------------------------------------
+*	Innovus 21.13-s100_1 (64bit) 03/04/2022 14:32 (Linux 3.10.0-693.el7.x86_64)
+*	
+*
+* 	Date & Time:	2023-Mar-02 15:05:10 (2023-Mar-02 23:05:10 GMT)
+*
+*----------------------------------------------------------------------------------------
+*
+*	Design: bsg_cgol_cell
+*
+*	Liberty Libraries used: 
+*	        ss_100C_1v60.setup_view: /home/projects/ee477.2023wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib
+*
+*	Power Domain used: 
+*              Rail:        VDD      Voltage:        1.6 
+*
+*       Power View : ss_100C_1v60.setup_view
+*
+*       User-Defined Activity : N.A.
+*
+*       Activity File: N.A.
+*
+*       Hierarchical Global Activity: N.A.
+*
+*       Global Activity: N.A.
+*
+*       Sequential Element Activity: 0.200000
+*
+*       Primary Input Activity: 0.200000
+*
+*       Default icg ratio: N.A.
+*
+*       Global Comb ClockGate Ratio: N.A.
+*
+*	Power Units = 1mW
+*
+*	Time Units = 1e-09 secs 
+*
+*       report_power -outfile bsg_cgol_cell_power.rpt -hierarchy all
+*
+-----------------------------------------------------------------------------------------
+
+
+Total Power 
+-----------------------------------------------------------------------------------------
+Total Internal Power:        0.02068461 	   62.8951%
+Total Switching Power:       0.01204247 	   36.6172%
+Total Leakage Power:         0.00016040 	    0.4877%
+Total Power:                 0.03288748 
+-----------------------------------------------------------------------------------------
+
+
+Group                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+Sequential                       0.01079   0.0008615   3.366e-05     0.01169       35.53 
+Macro                                  0           0           0           0           0 
+IO                                     0           0           0           0           0 
+Combinational                   0.009894     0.01118   0.0001267      0.0212       64.47 
+Clock (Combinational)                  0           0           0           0           0 
+Clock (Sequential)                     0           0           0           0           0 
+-----------------------------------------------------------------------------------------
+Total                            0.02068     0.01204   0.0001604     0.03289         100 
+-----------------------------------------------------------------------------------------
+
+
+Rail                  Voltage   Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+VDD                       1.6    0.02068     0.01204   0.0001604     0.03289         100 
+
+
+Total Power 
+-----------------------------------------------------------------------------------------
+Total Internal Power:        0.02068461 	   62.8951%
+Total Switching Power:       0.01204247 	   36.6172%
+Total Leakage Power:         0.00016040 	    0.4877%
+Total Power:                 0.03288748 
+-----------------------------------------------------------------------------------------
+
+
+Hierarchy                       Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+countOnes                       0.006941     0.00944   0.0001063     0.01649       50.13  
+countOnes/recurse.left          0.002459    0.003382   3.805e-05    0.005879       17.88  
+countOnes/recurse.right         0.002588    0.003714   3.805e-05     0.00634       19.28  
+
+
+-----------------------------------------------------------------------------------------
+*	Power Distribution Summary: 
+*                Highest Average Power:                data_o_reg (sky130_fd_sc_hd__sedfxtp_1):         0.009998 
+*                Highest Leakage Power:                data_o_reg (sky130_fd_sc_hd__sedfxtp_1):        2.157e-05 
+*          Total Cap:      1.92979e-13 F
+*          Total instances in design:    24
+*          Total instances in design with no power:     0
+*          Total instances in design with no activity:     0
+*          Total Fillers and Decap:     0
+-----------------------------------------------------------------------------------------
+
