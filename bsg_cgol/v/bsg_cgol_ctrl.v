@@ -22,8 +22,6 @@ module bsg_cgol_ctrl #(
 );
 
   wire unused = en_i; // for clock gating, unused
-  
-  // TODO: Design your control logic
 
 	enum logic [1:0] {START, BUSY, DONE} ps, ns;	
 
@@ -32,8 +30,8 @@ module bsg_cgol_ctrl #(
 	logic overflow;
 
 	bsg_counter_dynamic_limit_en counter (.clk_i, .reset_i(reset_i || v_o), .en_i(en_o), 
-																				.limit_i(frames_r), .counter_o(count),
-																				.overflowed_o(overflow));
+					      .limit_i(frames_r), .counter_o(count),
+					      .overflowed_o(overflow));
 	defparam counter.width_p = (game_len_width_lp);
 
 	
